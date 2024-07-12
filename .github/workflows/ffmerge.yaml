@@ -1,0 +1,40 @@
+---
+name: Non-destructive Merge
+
+on:
+  pull_request:
+    types: closed
+  branches:
+    - 'main-*'
+
+jobs:
+  ff_merge:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        ref: main
+    - name: Print all branches (pre-fetch)
+      run: git branch --format '%(objectname:short) %(refname) upstream: %(upstream)' --all
+    - name: Output value of GITHUB_EVENT_PATH
+      run: echo $GITHUB_EVENT_PATH
+    - name: Output value of GITHUB_EVENT_PATH
+      run: echo $GITHUB_EVENT_PATH
+    - name: Output content of GITHUB_EVENT_PATH
+      run: cat $GITHUB_EVENT_PATH
+    - name: Formatted output content of GITHUB_EVENT_PATH
+      run: cat $GITHUB_EVENT_PATH | jq '.'
+    - name: Fetch PR branch
+      run: git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
+    - name: Status, Post-fetch PR branch
+      run: git status
+    - name: Merge PR branch
+      run: git merge --no-ff pr-branch
+    - name: Status, merge PR branch
+      run: git status
+    - name: Push changes
+      run: git push origin main
+      env:
+        GITHUB_TOKEN: ${{ secrets.MSGH_TOKEN }}
