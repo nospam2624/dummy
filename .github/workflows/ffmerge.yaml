@@ -34,10 +34,10 @@ jobs:
     - name: Set git user.email and user.name
       run: git config --global user.email "msgh-action"; git config --global user.name "robot"
     - name: Merge PR branch
-      run: git merge --no-ff pr-branch
-    - name: Status, merge PR branch
-      run: git status
+      run: git merge --ff-only pr-branch
+    - name: Print all branches (pre-push)
+      run: "git branch --format '%(objectname:short) %(refname) upstream: %(upstream)' --all"
     - name: Push changes
       run: git push origin main
       env:
-        GITHUB_TOKEN: ${{ secrets.MSGH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
