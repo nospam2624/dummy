@@ -40,4 +40,4 @@ jobs:
     - name: Push changes
       env:
         TOKEN: ${{ secrets.MSGH_TOKEN }}
-      run: git push https://x-access-token:${{ TOKEN }}@github.com/${{ github.repository }}.git main:main
+      run: git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git main:main
