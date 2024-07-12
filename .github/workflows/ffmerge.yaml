@@ -39,5 +39,5 @@ jobs:
       run: "git branch --format '%(objectname:short) %(refname) upstream: %(upstream)' --all"
     - name: Push changes
       env:
-        CLASSIC_TOKEN: ${{ secrets.CLASSIC_TOKEN }}
-      run: git push https://x-access-token:${{ secrets.CLASSIC_TOKEN }}@github.com/${{ github.repository }}.git main:main
+        TOKEN: ${{ secrets.MSGH_TOKEN }}
+      run: git push https://x-access-token:${{ TOKEN }}@github.com/${{ github.repository }}.git main:main
