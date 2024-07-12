@@ -38,6 +38,6 @@ jobs:
     - name: Print all branches (pre-push)
       run: "git branch --format '%(objectname:short) %(refname) upstream: %(upstream)' --all"
     - name: Push changes
-      run: git push origin main
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CLASSIC_TOKEN: ${{ secrets.CLASSIC_TOKEN }}
+      run: git push https://x-access-token:${{ secrets.CLASSIC_TOKEN }}@github.com/${{ github.repository }}.git main:main
