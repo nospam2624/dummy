@@ -3,7 +3,8 @@ name: Non-destructive Merge
 
 on:
   pull_request:
-    types: closed
+    types:
+      - closed
   branches:
     - 'main-*'
 
