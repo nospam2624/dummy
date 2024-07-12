@@ -31,6 +31,8 @@ jobs:
       run: git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
     - name: Status, Post-fetch PR branch
       run: git status
+    - name: Set git user.email and user.name
+      run: git config --global user.email "msgh-action"; git config --global user.name "robot"
     - name: Merge PR branch
       run: git merge --no-ff pr-branch
     - name: Status, merge PR branch
