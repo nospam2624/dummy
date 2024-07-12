@@ -17,7 +17,7 @@ jobs:
       with:
         ref: main
     - name: Print all branches (pre-fetch)
-      run: git branch --format '%(objectname:short) %(refname) upstream: %(upstream)' --all
+      run: "git branch --format '%(objectname:short) %(refname) upstream: %(upstream)' --all"
     - name: Output value of GITHUB_EVENT_PATH
       run: echo $GITHUB_EVENT_PATH
     - name: Output value of GITHUB_EVENT_PATH
