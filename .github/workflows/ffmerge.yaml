@@ -2,6 +2,7 @@
 name: Non-destructive Merge
 
 on:
+  permissions: write-all
   pull_request:
     types:
       - closed
@@ -48,4 +49,4 @@ jobs:
     - name: Push changes
       env:
         TOKEN: ${{ secrets.MSGH_TOKEN }}
-      run: unset GITHUB_TOKEN; git push https main:main
+      run: unset GITHUB_TOKEN; git push origin main:main
