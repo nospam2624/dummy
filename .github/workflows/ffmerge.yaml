@@ -1,8 +1,9 @@
 ---
 name: Non-destructive Merge
 
+permissions: write-all
+
 on:
-  permissions: write-all
   pull_request:
     types:
       - closed
