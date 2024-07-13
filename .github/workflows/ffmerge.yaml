@@ -38,9 +38,6 @@ jobs:
     - name: Print all branches (pre-push)
       run: "git branch --format '%(objectname:short) %(refname) upstream: %(upstream)' --all"
     - name: Push changes
-      with:
-        ghtoken: ${{ secrets.MSGH_TOKEN }}
-        ctoken: ${{ secrets.CLASSIC_TOKEN }}
       env:
         TOKEN: ${{ secrets.MSGH_TOKEN }}
-      run: "echo ghtoken: $( echo {{ ghtoken }}| wc -c ); echo ctoken: $( echo {{ ctoken }} | wc -c ); echo secret.MSGH_ $( echo ${{ secrets.MSGH_TOKEN }} | wc -c ); echo TOKEN $( echo $TOKEN | wc -c ); git push https://x-access-token:{{ ghtoken }}github.com/${{ github.repository }}.git main:main
+        run: env; echo $TOKEN $( echo $TOKEN | wc -c ); git push https://x-access-token:$TOKEN@github.com/${{ github.repository }}.git main:main
