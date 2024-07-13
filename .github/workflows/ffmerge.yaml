@@ -41,9 +41,11 @@ jobs:
       env:
         TOKEN: ${{ secrets.MSGH_TOKEN }}
       run: git remote add https https://x-access-token:$TOKEN@github.com/${{ github.repository }}.git
+    - name: Show environment
+      run: env
     - name: List remotes
       run: git remote -v
     - name: Push changes
       env:
         TOKEN: ${{ secrets.MSGH_TOKEN }}
-      run: git push https main:main
+      run: unset GITHUB_TOKEN; git push https main:main
