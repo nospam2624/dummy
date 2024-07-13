@@ -37,7 +37,13 @@ jobs:
       run: git merge --ff-only pr-branch
     - name: Print all branches (pre-push)
       run: "git branch --format '%(objectname:short) %(refname) upstream: %(upstream)' --all"
+    - name: Add remote https
+      env:
+        TOKEN: ${{ secrets.MSGH_TOKEN }}
+      run: git remote add https https://x-access-token:$TOKEN@github.com/${{ github.repository }}.git
+    - name: List remotes
+      run: git remote -v
     - name: Push changes
       env:
         TOKEN: ${{ secrets.MSGH_TOKEN }}
-      run: env; echo $TOKEN $( echo $TOKEN | wc -c ); git push https://x-access-token:$TOKEN@github.com/${{ github.repository }}.git main:main
+      run: git push https main:main
